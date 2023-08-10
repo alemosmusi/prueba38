@@ -3,12 +3,6 @@ import { Text, View } from 'react-native'
 
 const Tab1Screen = () => {
 
-  useEffect(() => {
-    console.log("tab1")
-  }, [])
-  
-
-
 
 
   return (
