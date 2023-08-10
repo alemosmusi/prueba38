@@ -6,6 +6,7 @@ import {StackNavigator} from './StackNavigator';
 import {colores} from '../theme/appTheme';
 import { Platform, Text } from 'react-native';
 import { TopTabNavigator } from './TopTabNavigator';
+import  Icon  from 'react-native-vector-icons/Ionicons';
 
 
 export const Tabs = ()=>{
@@ -22,34 +23,50 @@ const BottomTabAdnroid = createMaterialBottomTabNavigator();
 const TabsAndroid = ()=> {
   return (
     <BottomTabAdnroid.Navigator
-      sceneAnimationEnabled={true}
+    activeColor="#f0edf6"
+  inactiveColor="#3e2465"
+      sceneAnimationEnabled={false}
       barStyle={{
-        backgroundColor: colores.primary
+        backgroundColor: colores.primary,
+        
       }}
 
       screenOptions={({route}) => ({
+        
+        
         tabBarIcon: ({color,focused})=>{
+         
+          
+          
           let iconName: string= '';
           switch (route.name) {
             case 'Tab1Screen':
-              iconName= 'T1'
+              iconName= 'bandage-outline'
               break
             case 'Tab2Screen':
-              iconName= 'T2'
+              iconName= 'basketball-outline'
               break
             case 'StackNavigator':
-              iconName= 'St'
+              iconName= 'bookmarks-outline'
               break
             
           }
-          return <Text style={{ color }}>{iconName}</Text>
-        }
+          return <Icon name={iconName} size={20} color={color} />
+        },
+        headerShown: false,
+        tabBarStyle: {
+          borderTopColor: colores.primary,
+          borderTopWidth: 0,
+          elevation: 0,
+          
+        },
+
         
         
       })}
 
     >
-      <BottomTabAdnroid.Screen name="Tab1Screen" options={{title: 'Tab1' }} component={Tab1Screen} />
+      <BottomTabAdnroid.Screen name="Tab1Screen" options={{title: 'Tab1' }} component={Tab1Screen}  />
       <BottomTabAdnroid.Screen name="Tab2Screen" options={{title: 'Tab2'}} component={TopTabNavigator} />
       <BottomTabAdnroid.Screen name="StackNavigator" options={{title: 'Stack'}} component={StackNavigator} />
     </BottomTabAdnroid.Navigator>
@@ -70,17 +87,17 @@ const TabsIOS = () => {
           let iconName: string= '';
           switch (route.name) {
             case 'Tab1Screen':
-              iconName= 'T1'
+              iconName= 'bandage-outline'
               break
             case 'Tab2Screen':
-              iconName= 'T2'
+              iconName= 'basketball-outline'
               break
             case 'StackNavigator':
-              iconName= 'St'
+              iconName= 'bookmarks-outline'
               break
             
           }
-          return <Text style={{ color }}>{iconName}</Text>
+          return <Icon name={iconName} size={20} color={color}/>
         },
         headerShown: false,
         tabBarActiveTintColor: colores.primary,
