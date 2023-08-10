@@ -27,6 +27,8 @@ export interface AuthContextProps {
     authState: AuthState;
     signIn: () => void;
     changeFavoriteIcon: (iconName:string) => void;
+    logout: () => void;
+    changeUsername: (userName:string) => void;
 }
 
 //crear el contescto
@@ -50,13 +52,22 @@ export const AuthProvider = ({children}: any) => {
         dispatch({type: 'changeFavIcon', payload: iconName})
     }
 
+    const changeUserName = (userName: string)=>{
+        dispatch({type: 'changeUsername', payload: userName})
+    }
+    const logout = ()=>{
+        dispatch({type: 'logout'})
+    }
+
 
 
     return(
         <AuthContext.Provider value={{
             authState: authState,
             signIn: signIn,
-            changeFavoriteIcon
+            changeFavoriteIcon,
+            logout: logout,
+            changeUsername: changeUserName
         }}>
             {children}
         </AuthContext.Provider>
